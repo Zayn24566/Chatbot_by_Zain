@@ -50,10 +50,18 @@ export default function App() {
       {/* Top Header navbar */}
       <header className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-          <h1 className="text-sm font-semibold tracking-wide text-zinc-200">Llama 3.3 Workspace</h1>
+          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-semibold text-white">
+            ZA
+          </div>
+          <div>
+            <h1 className="text-sm font-semibold tracking-wide text-zinc-200">Zayn's AI Assistant</h1>
+            <p className="text-[10px] text-zinc-500">by Muhammad Zain Azeem</p>
+          </div>
         </div>
-        <span className="text-xs font-mono text-zinc-500">Groq SDK Live</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500" />
+          <span className="text-xs text-zinc-500">Online</span>
+        </div>
       </header>
 
       {/* Chat Box Container */}
@@ -66,16 +74,16 @@ export default function App() {
         )}
 
         {messages.map((msg, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className={`flex flex-col max-w-[85%] md:max-w-[75%] rounded-2xl px-4 py-3 border ${
-              msg.role === 'user' 
-                ? 'ml-auto bg-zinc-900 border-zinc-800 text-zinc-100' 
+              msg.role === 'user'
+                ? 'ml-auto bg-zinc-900 border-zinc-800 text-zinc-100'
                 : 'mr-auto bg-zinc-900/30 border-zinc-800/60 text-zinc-300'
             }`}
           >
             <span className="text-[10px] uppercase tracking-widest font-mono text-zinc-500 mb-1">
-              {msg.role === 'user' ? 'Client' : 'Agent Core'}
+              {msg.role === 'user' ? 'You' : 'Zayn AI'}
             </span>
             <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
           </div>
@@ -83,7 +91,7 @@ export default function App() {
 
         {loading && (
           <div className="mr-auto bg-zinc-900/10 border border-zinc-800/40 rounded-2xl px-4 py-3 max-w-[75%]">
-            <span className="text-[10px] uppercase tracking-widest font-mono text-zinc-500 animate-pulse">Streaming Response Pending...</span>
+            <span className="text-[10px] uppercase tracking-widest font-mono text-zinc-500 animate-pulse">Thinking...</span>
           </div>
         )}
         <div ref={scrollRef} />
@@ -97,7 +105,7 @@ export default function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={loading}
-            placeholder="Transmit data packets..."
+            placeholder="Ask me anything..."
             className="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-zinc-700 transition disabled:opacity-50"
           />
           <button
@@ -108,6 +116,7 @@ export default function App() {
             Send
           </button>
         </form>
+        <p className="text-center text-xs text-zinc-700 mt-2">Built by Zayn Azeem</p>
       </footer>
     </div>
   );
